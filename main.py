@@ -76,7 +76,11 @@ def get_Today_Class():
     month = localtime().tm_mon
     day = localtime().tm_mday
     today = datetime.date(datetime(year=year, month=month, day=day))
-    todayClasses = get_Week_Classes(None)[today.weekday()]
+    week_classes = get_Week_Classes(None)
+    if week_classes is not None:
+        todayClasses = week_classes[today.weekday()]
+    else:
+        todayClasses = None  # 或者根据实际情况返回一个默认值
     return todayClasses
 
 
